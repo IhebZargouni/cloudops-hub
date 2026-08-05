@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+
+  mysql:
+
+    image: mysql:8.4
+
+    container_name: cloudops-mysql
+
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+
+      MYSQL_DATABASE: cloudops_hub
+
+      MYSQL_USER: cloudops
+
+      MYSQL_PASSWORD: cloudops123
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+
+  mysql-data:
