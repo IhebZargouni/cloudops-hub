@@ -44,4 +44,20 @@ Production-ready Cloud Infrastructure Monitoring & Incident Management Platform.
 
 ---
 
+## Version 0.4.0 - Application Core
+
+### Added
+
+- Global error handling
+- API response helper
+- Custom ApiError class
+- 404 middleware
+- Shared application utilities
+
+### Benefits
+
+- Centralized error management
+- Consistent API responses
+- Scalable architecture
+
 Work in progress.
