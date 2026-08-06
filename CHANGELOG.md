@@ -16,3 +16,14 @@ All notable changes to this project will be documented in this file.
 - Initial database migration
 - User model
 - Health endpoint with database connectivity
+
+---
+## v0.4.0
+
+### Added
+
+- Global error middleware
+- API response helper
+- Custom ApiError class
+- 404 middleware
+- Shared application core
