@@ -60,4 +60,27 @@ Production-ready Cloud Infrastructure Monitoring & Incident Management Platform.
 - Consistent API responses
 - Scalable architecture
 
+
+---
+
+## Development Workflow
+
+CloudOps Hub follows a Git Flow-inspired workflow.
+
+### Branches
+
+- `main` - Stable releases
+- `develop` - Integration branch
+- `feature/*` - New features
+- `release/*` - Release preparation
+- `hotfix/*` - Production fixes
+
+### Quality Standards
+
+- Conventional Commits
+- Pull Requests
+- GitHub Issues
+- Automated CI
+- Code Reviews
+
 Work in progress.
