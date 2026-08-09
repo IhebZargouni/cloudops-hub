@@ -27,3 +27,14 @@ All notable changes to this project will be documented in this file.
 - Custom ApiError class
 - 404 middleware
 - Shared application core
+
+---
+
+## v0.5.0
+
+### Added
+
+- CONTRIBUTING guide
+- CODEOWNERS
+- EditorConfig
+- Repository workflow documentation
