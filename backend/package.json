@@ -8,7 +8,17 @@
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.{ts,tsx,json}\" \"*.{json,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,json}\" \"*.{json,md}\"",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -38,6 +48,8 @@
     "@types/node": "^26.1.2",
     "eslint": "^10.7.0",
     "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "nodemon": "^3.1.14",
     "prettier": "^3.9.5",
     "ts-node": "^10.9.2",
