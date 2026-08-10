@@ -13,7 +13,7 @@ import { errorHandler } from './middlewares/error.middleware';
 import { ApiError } from './shared/errors/apiError';
 
 const app = express();
-//test
+
 app.use(cors());
 
 app.use(helmet());
