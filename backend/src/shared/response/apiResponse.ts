@@ -1,19 +1,13 @@
-export function successResponse(
+export function successResponse<T>(
+  data: T,
 
-    data: any,
-
-    message = "Success"
-
+  message = 'Success',
 ) {
+  return {
+    success: true,
 
-    return {
+    message,
 
-        success: true,
-
-        message,
-
-        data
-
-    };
-
+    data,
+  };
 }

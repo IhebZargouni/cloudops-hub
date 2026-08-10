@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+repo_root="$(git rev-parse --show-toplevel)"
+commit_msg_file="$repo_root/$1"
+
+cd "$repo_root/backend" || exit 1
+
+npx --no -- commitlint --edit "$commit_msg_file"

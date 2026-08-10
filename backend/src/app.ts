@@ -1,16 +1,16 @@
-import express from "express";
-import cors from "cors";
-import helmet from "helmet";
-import compression from "compression";
-import cookieParser from "cookie-parser";
-import morgan from "morgan";
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import compression from 'compression';
+import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
 
-import prisma from "./config/prisma";
+import prisma from './config/prisma';
 
-import { notFound } from "./middlewares/notFound.middleware";
-import { errorHandler } from "./middlewares/error.middleware";
+import { notFound } from './middlewares/notFound.middleware';
+import { errorHandler } from './middlewares/error.middleware';
 
-import { ApiError } from "./shared/errors/apiError";
+import { ApiError } from './shared/errors/apiError';
 
 const app = express();
 
@@ -24,9 +24,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-app.use(morgan("dev"));
-
-
+app.use(morgan('dev'));
 
 // app.get("/health", (_req, res) => {
 //     res.status(200).json({
@@ -37,34 +35,30 @@ app.use(morgan("dev"));
 //     });
 // });
 
-app.get("/health", async (_req, res) => {
-    try {
-        await prisma.$queryRaw`SELECT 1`;
+app.get('/health', async (_req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
 
-        res.status(200).json({
-            status: "OK",
-            database: "Connected",
-            service: "CloudOps Hub API",
-            timestamp: new Date(),
-        });
-    } catch {
-        res.status(500).json({
-            status: "ERROR",
-            database: "Disconnected",
-        });
-    }
+    res.status(200).json({
+      status: 'OK',
+      database: 'Connected',
+      service: 'CloudOps Hub API',
+      timestamp: new Date(),
+    });
+  } catch {
+    res.status(500).json({
+      status: 'ERROR',
+      database: 'Disconnected',
+    });
+  }
 });
 
-app.get("/error", () => {
+app.get('/error', () => {
+  throw new ApiError(
+    400,
 
-    throw new ApiError(
-
-        400,
-
-        "Example Error"
-
-    );
-
+    'Example Error',
+  );
 });
 app.use(notFound);
 
