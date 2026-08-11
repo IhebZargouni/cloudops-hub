@@ -11,13 +11,13 @@ services:
     restart: unless-stopped
 
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
 
-      MYSQL_DATABASE: cloudops_hub
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
 
-      MYSQL_USER: cloudops
+      MYSQL_USER: ${MYSQL_USER}
 
-      MYSQL_PASSWORD: cloudops123
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
     ports:
       - "3306:3306"
