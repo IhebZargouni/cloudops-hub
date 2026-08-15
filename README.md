@@ -736,3 +736,50 @@ CloudOps Hub has completed its initial backend, database, application-core, code
 The next development phases will focus on automated testing, containerization, infrastructure as code, AWS deployment, monitoring, observability, alerting, and incident management.
 
 The project is being built incrementally with the objective of demonstrating a complete, production-oriented **Cloud Engineering + DevOps + Software Engineering** workflow.
+
+
+---
+
+## Version 0.8.0 — Automated Application Testing
+
+
+### Added
+
+- Vitest test runner
+
+- Supertest HTTP assertions
+
+- Automated API tests for:
+
+  - Health check endpoint
+
+  - Error handling endpoint
+
+  - 404 / unknown route handling
+
+- npm test command
+
+- Test coverage configuration
+
+- Automated test execution in GitHub Actions CI
+
+## Test Command
+
+```bash
+npm test
+```
+## CI Integration
+
+The GitHub Actions CI pipeline now validates:
+
+1.Dependencies (npm ci)
+
+2.Prisma Client generation
+
+3.ESLint
+
+4.Prettier formatting
+
+5.Automated tests (npm test)
+
+6.TypeScript build
