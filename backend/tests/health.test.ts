@@ -6,7 +6,7 @@ describe('Health Check Endpoint', () => {
   it('should return 200 OK with database connected', async () => {
     const response = await request(app).get('/health');
 
-    expect(response.status).toBe(500);
+    expect(response.status).toBe(200);
     expect(response.body).toMatchObject({
       status: 'OK',
       database: 'Connected',
