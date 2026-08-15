@@ -13,7 +13,20 @@ on:
 jobs:
   backend-ci:
     name: Backend CI
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+
+ # ✅ Add MySQL service container
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: cloudops_hub
+          MYSQL_USER: cloudops
+          MYSQL_PASSWORD: cloudops123
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     defaults:
       run:
@@ -36,11 +49,23 @@ jobs:
       - name: Generate Prisma Client
         run: npx prisma generate
 
+      - name: Run database migrations
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: mysql://cloudops:cloudops123@localhost:3306/cloudops_hub
+
       - name: Run ESLint
         run: npm run lint
 
       - name: Check formatting
         run: npm run format:check
 
+      - name: Run tests
+        run: npm test
+        env:
+          DATABASE_URL: mysql://cloudops:cloudops123@localhost:3306/cloudops_hub
+
       - name: Build application
         run: npm run build
+        env:
+          DATABASE_URL: mysql://cloudops:cloudops123@localhost:3306/cloudops_hub
