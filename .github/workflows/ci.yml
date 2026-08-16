@@ -19,10 +19,10 @@ jobs:
       mysql:
         image: mysql:8.4
         env:
-          MYSQL_ROOT_PASSWORD: root_${{ github.sha }}
-          MYSQL_DATABASE: test_${{ github.sha }}
-          MYSQL_USER: user_${{ github.sha }}
-          MYSQL_PASSWORD: pass_${{ github.sha }}
+          MYSQL_ROOT_PASSWORD: root_${{ github.run_id }}
+          MYSQL_DATABASE: test_${{ github.run_id }}
+          MYSQL_USER: user_${{ github.run_id }}
+          MYSQL_PASSWORD: pass_${{ github.run_id }}
         ports:
           - 3306:3306
         options: 
@@ -55,7 +55,7 @@ jobs:
       - name: Run database migrations
         run: npx prisma migrate deploy
         env:
-          DATABASE_URL: mysql://user_${{ github.sha }}:pass_${{ github.sha }}@localhost:3306/test_${{ github.sha }}
+          DATABASE_URL: mysql://user_${{ github.run_id }}:pass_${{ github.run_id }}@localhost:3306/test_${{ github.run_id }}
 
       - name: Run ESLint
         run: npm run lint
@@ -66,9 +66,9 @@ jobs:
       - name: Run tests
         run: npm test
         env:
-          DATABASE_URL: mysql://user_${{ github.sha }}:pass_${{ github.sha }}@localhost:3306/test_${{ github.sha }}
+          DATABASE_URL: mysql://user_${{ github.run_id }}:pass_${{ github.run_id }}@localhost:3306/test_${{ github.run_id }}
 
       - name: Build application
         run: npm run build
         env:
-          DATABASE_URL: mysql://user_${{ github.sha }}:pass_${{ github.sha }}@localhost:3306/test_${{ github.sha }}
+          DATABASE_URL: mysql://user_${{ github.run_id }}:pass_${{ github.run_id }}@localhost:3306/test_${{ github.run_id }}
