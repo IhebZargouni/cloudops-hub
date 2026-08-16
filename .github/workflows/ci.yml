@@ -15,18 +15,21 @@ jobs:
     name: Backend CI
     runs-on: ubuntu-24.04
 
- # ✅ Add MySQL service container
     services:
       mysql:
         image: mysql:8.4
         env:
-          MYSQL_ROOT_PASSWORD: rootpassword
-          MYSQL_DATABASE: cloudops_hub
-          MYSQL_USER: cloudops
-          MYSQL_PASSWORD: cloudops123
+          MYSQL_ROOT_PASSWORD: root_${GITHUB_SHA}
+          MYSQL_DATABASE: test_${GITHUB_SHA}
+          MYSQL_USER: user_${GITHUB_SHA}
+          MYSQL_PASSWORD: pass_${GITHUB_SHA}
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: 
+                 --health-cmd="mysqladmin ping"
+                 --health-interval=10s
+                 --health-timeout=5s
+                 --health-retries=3
 
     defaults:
       run:
@@ -52,7 +55,7 @@ jobs:
       - name: Run database migrations
         run: npx prisma migrate deploy
         env:
-          DATABASE_URL: mysql://cloudops:cloudops123@localhost:3306/cloudops_hub
+          DATABASE_URL: mysql://user_${GITHUB_SHA}:pass_${GITHUB_SHA}@localhost:3306/test_${GITHUB_SHA}
 
       - name: Run ESLint
         run: npm run lint
@@ -63,9 +66,9 @@ jobs:
       - name: Run tests
         run: npm test
         env:
-          DATABASE_URL: mysql://cloudops:cloudops123@localhost:3306/cloudops_hub
+          DATABASE_URL: mysql://user_${GITHUB_SHA}:pass_${GITHUB_SHA}@localhost:3306/test_${GITHUB_SHA}
 
       - name: Build application
         run: npm run build
         env:
-          DATABASE_URL: mysql://cloudops:cloudops123@localhost:3306/cloudops_hub
+          DATABASE_URL: mysql://user_${GITHUB_SHA}:pass_${GITHUB_SHA}@localhost:3306/test_${GITHUB_SHA}

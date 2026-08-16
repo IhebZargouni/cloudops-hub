@@ -783,3 +783,53 @@ The GitHub Actions CI pipeline now validates:
 5.Automated tests (npm test)
 
 6.TypeScript build
+
+## Security — CI Test Database
+
+CloudOps Hub uses ephemeral test databases in CI pipelines for security and isolation.
+
+## How It Works
+
+Each CI run creates a fresh database with a unique name
+
+Credentials are auto-generated using GITHUB_SHA
+
+Database is isolated from all other runs
+
+## Version 0.9.0 — Implement Ephemeral Test Database in CI
+
+### Security — CI Test Database
+
+CloudOps Hub uses ephemeral test databases in CI pipelines for security and isolation.
+
+### How It Works
+
+1- Each CI run creates a fresh database with a unique name
+
+2- Credentials are auto-generated using GITHUB_SHA
+
+3- Database is isolated from all other runs
+
+4- Database is destroyed automatically after the run
+
+### Benefits
+
+- Security:	No credentials stored in the repository
+- Isolation:	Each test run has its own isolated database
+- Reproducibility:	Every CI run starts fresh
+- Parallelism:	Multiple runs can happen simultaneously
+- Cost:	No persistent infrastructure to maintain
+
+### Technical Implementation
+
+services:
+  mysql:
+    image: mysql:8.4
+    env:
+      MYSQL_ROOT_PASSWORD: root_${GITHUB_SHA}
+      MYSQL_DATABASE: test_${GITHUB_SHA}
+      MYSQL_USER: user_${GITHUB_SHA}
+      MYSQL_PASSWORD: pass_${GITHUB_SHA}
+
+      env:
+  DATABASE_URL: mysql://user_${GITHUB_SHA}:pass_${GITHUB_SHA}@localhost:3306/test_${GITHUB_SHA}
