@@ -1,17 +1,27 @@
 # Node
 node_modules/
 npm-debug.log*
+dist/
+build/
+coverage/
 
 # Logs
 logs/
 *.log
+npm-debug.log*
 
-# Environment
+# Environment variables
 .env
-.env.local
+.env.*
+*.env
+*.env.*
+!.env.example
 
 # VS Code
 .vscode/settings.json
+.idea/
+*.swp
+*.swo
 
 # Build
 dist/
@@ -31,6 +41,12 @@ Thumbs.db
 
 # Docker
 *.pid
+*.db
 
 # Misc
 .cache/
+
+# Secrets
+secrets/
+*.pem
+*.key

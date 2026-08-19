@@ -833,3 +833,18 @@ services:
 
       env:
   DATABASE_URL: mysql://user_${GITHUB_SHA}:pass_${GITHUB_SHA}@localhost:3306/test_${GITHUB_SHA}
+
+  ## Version 0.10.0 — Docker Containerization
+
+### Prerequisites
+
+- Docker and Docker Compose installed
+- Node.js 22 (for local development)
+- Environment variables configured
+
+### Quick Start
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/cloudops-hub.git
+   cd cloudops-hub
