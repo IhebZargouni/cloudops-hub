@@ -12,7 +12,9 @@
     "prepare": "husky",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "docker:build": "docker build -t cloudops-hub-backend .",
+    "docker:run": "docker run -p 5000:5000 --env-file .env cloudops-hub-backend"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
