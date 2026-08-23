@@ -848,3 +848,25 @@ services:
    ```bash
    git clone https://github.com/yourusername/cloudops-hub.git
    cd cloudops-hub
+
+## version 0.11.0 - Container Registry
+
+CloudOps Hub images are published to Docker Hub.
+
+### Images
+
+| Image | Tags | Purpose |
+|-------|------|---------|
+| `username/cloudops-hub-backend` | `latest`, `develop`, `sha-xxxxx` | Backend application |
+
+### Pulling the Image
+
+```bash
+# Pull the latest version
+docker pull username/cloudops-hub-backend:latest
+
+# Pull a specific version
+docker pull username/cloudops-hub-backend:develop
+
+# Pull a specific commit
+docker pull username/cloudops-hub-backend:sha-xxxxx
